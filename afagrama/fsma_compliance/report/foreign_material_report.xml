@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="foreign_material_report">
+            <t t-name="foreign_material">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="web.external_layout">
+                            <div class="page" style="page-break-inside: avoid;">
+                                <div class="row">
+                                    <div name="address" class="col-xs-5 col-xs-offset-7"/>
+                                </div>
+                                <h2 name="title"><strong><t t-esc="doc.name"/></strong></h2>
+                                <div class="clearfix"/>
+                                <div class="row mt32 mb32">
+                                    <div class="col-xs-6 pull-left">
+
+                                        <p><strong>Log : </strong> <t t-esc="doc.log"/></p>
+
+                                        <p><strong>ID : </strong> <t t-esc="doc.id"/></p>
+
+                                        <p><strong>Product : </strong> <t t-esc="doc.product_id.name"/></p>
+
+                                        <p><strong>Lot # : </strong> <t t-esc="doc.lot_id.name"/></p>
+                                    </div>
+                                    <div class="col-xs-6 pull-right">
+
+                                        <p> <strong>Manufacturing Order : </strong> <t t-esc="doc.manufacturing_order_id.name"/></p>
+
+                                        <p> <strong>Created by : </strong> <t t-esc="doc.create_uid.name"/></p>
+
+                                        <p> <strong>Created on : </strong> <t t-esc="doc.create_date"/></p>
+
+                                        <p> <strong>Date and Time : </strong> <t t-esc="doc.date_and_time"/></p>
+                                    </div>
+                                </div>
+
+                                <h3><strong>Information</strong></h3><br/>
+
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:13px">
+                                        <p t-if="doc.blue_card_stain_2_0mm and doc.log != 'AMS' "><b>BLUE CARD- Stainless 2.0 mm : </b><span t-field="doc.blue_card_stain_2_0mm"/></p>
+                                        <p t-if="not doc.blue_card_stain_2_0mm and doc.log != 'AMS' "><b>BLUE CARD- Stainless 2.0 mm : </b> ...... </p>
+
+                                        <p t-if="doc.blue_card_stain_5_556mm and doc.log != 'action_pac' "><b>BLUE CARD- Stainless 5.556 mm : </b><span t-field="doc.blue_card_stain_5_556mm"/></p>
+                                        <p t-if="not doc.blue_card_stain_5_556mm and doc.log != 'action_pac' "><b>BLUE CARD- Stainless 5.556 mm : </b> ...... </p>
+
+                                        <p t-if="doc.yellow_card_nonferrous_1_5mm and doc.log != 'AMS' "><b>YELLOW CARD- Non-Ferrous 1.5 mm : </b><span t-field="doc.yellow_card_nonferrous_1_5mm"/></p>
+                                        <p t-if="not doc.yellow_card_nonferrous_1_5mm and doc.log != 'AMS' "><b>YELLOW CARD- Non-Ferrous 1.5 mm : </b>......</p>
+
+                                        <p t-if="doc.yellow_card_ferrous_2_5mm and doc.log != 'action_pac' "><b>YELLOW CARD- Ferrous 2.5 mm : </b><span t-field="doc.yellow_card_ferrous_2_5mm"/></p>
+                                        <p t-if="not doc.yellow_card_ferrous_2_5mm and doc.log != 'action_pac' "><b>YELLOW CARD- Ferrous 2.5 mm : </b> ...... </p>
+
+                                        <p t-if="doc.red_card_nonferrous_5_5mm and doc.log != 'action_pac' "><b>RED CARD- Non-Ferrous 5.5 mm : </b><span t-field="doc.red_card_nonferrous_5_5mm"/></p>
+                                        <p t-if="not doc.red_card_nonferrous_5_5mm and doc.log != 'action_pac' "><b>RED CARD- Non-Ferrous 5.5 mm : </b> ...... </p>
+
+                                        <p t-if="doc.findings"><b>Findings : </b><span t-field="doc.findings"/></p>
+                                        <p t-if="not doc.findings"><b>Findings : </b> ...... </p>
+
+                                        <p t-if="doc.red_card_ferrous_1_2mm and doc.log != 'AMS' "><b>RED CARD- Ferrous 1.2 mm : </b><span t-field="doc.red_card_ferrous_1_2mm"/></p>
+                                        <p t-if="not doc.red_card_ferrous_1_2mm and doc.log != 'AMS' "><b>RED CARD- Ferrous 1.2 mm : </b> ...... </p>
+
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:13px">
+                                        <p t-if="doc.corrective_action"><b>CORRECTIVE ACTION : </b><span t-field="doc.corrective_action"/></p>
+                                        <p t-if="not doc.corrective_action"><b>CORRECTIVE ACTION : </b> ....... </p>
+
+                                        <p t-if="doc.metal_object_retained"><b>METAL OBJECT RETAINED : </b><span t-field="doc.metal_object_retained"/></p>
+                                        <p t-if="not doc.metal_object_retained"><b>METAL OBJECT RETAINED : </b> ....... </p>
+
+                                        <p><b>Rejects: </b><span t-field="doc.rejects"/></p>
+
+                                        <p><b>Poundage Destroyed : </b><span t-field="doc.poundage_destroyed"/></p>
+
+                                        <p t-if="doc.detection_method"><b>Detection Method : </b><span t-field="doc.detection_method"/></p>
+                                        <p t-if="not doc.detection_method"><b>Detection Method : </b> ....... </p>
+
+                                        <p t-if="doc.evidence"><b>Evidence : </b><span t-field="doc.evidence"/></p>
+                                        <p t-if="not doc.evidence"><b>Evidence : </b> ....... </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

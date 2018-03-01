@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="production_pre_operation_report">
+            <t t-name="production_pre_operation">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="web.external_layout">
+                            <div class="page">
+                                <div class="row">
+                                    <div name="address" class="col-xs-5 col-xs-offset-7"/>
+                                </div>
+                                <h2 name="title"><strong><t t-esc="doc.name"/></strong></h2>
+                                <div class="row mt32 mb32">
+                                    <div name="date" class="col-xs-3"><strong>Created on</strong><p><t t-esc="doc.create_date"/></p></div>
+                                </div>
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', doc.id, 600, 100)" style="width:300px;height:50px" class="pull-right mb16"/>
+                                <h3 name="title"><strong>Code : </strong><t t-esc="doc.id"/></h3>
+                                <div class="clearfix"/>
+                                <br/>
+
+                                <span><h3><strong>SSOP</strong></h3></span>
+
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:9px">
+                                        <p style="max-height:7px" t-if="doc.sanitary_procedure"><b>Sanitary Procedure : </b><span t-field="doc.sanitary_procedure"/></p>
+                                        <p style="max-height:7px" t-if="doc.food_contact_surfaces"><b>Food contact surfaces : </b><span t-field="doc.food_contact_surfaces"/></p>
+                                        <p style="max-height:7px" t-if="doc.spray_equipment_with_water"><b>Spray equipment with water : </b> <span t-field="doc.spray_equipment_with_water"/></p>
+                                        <p style="max-height:7px" t-if="doc.store_cleaning_materials"><b>Label and Store cleaning materials :</b>  <span t-field="doc.store_cleaning_materials"/></p>
+                                        <p style="max-height:7px" t-if="doc.ATP_swab"><b>ATP Swab : </b><span t-field="doc.ATP_swab"/></p>
+                                        <p style="max-height:7px" t-if="doc.transport_equipment"><b>Transport equipment : </b><span t-field="doc.transport_equipment"/></p>
+                                        <p style="max-height:7px" t-if="doc.labeling_cleaners"><b>Labeling Cleaners :</b> <span t-field="doc.labeling_cleaners"/></p>
+                                        <p style="max-height:7px" t-if="doc.examine_surfaces"><b>Examine Surfaces :</b> <span t-field="doc.examine_surfaces"/></p>
+                                        <p style="max-height:7px" t-if="doc.sanitizing_equipment"><b>Sanitizing Equipment :</b> <span t-field="doc.sanitizing_equipment"/></p>
+                                        <p style="max-height:7px" t-if="doc.remove_debris"><b>Remove Debris :</b><span t-field="doc.remove_debris"/></p>
+                                        <p style="max-height:7px" t-if="doc.non_food_contact_surfaces"><b>Non food contact surfaces :</b><span t-field="doc.non_food_contact_surfaces"/></p>
+
+
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:9px">
+
+                                        <p style="max-height:7px" t-if="doc.inspect_for_missing_parts"><b>Inspect for missing parts : </b><span t-field="doc.inspect_for_missing_parts"/></p>
+                                        <p style="max-height:7px" t-if="doc.cover_all_electrical_components"><b>Cover all electrical components :</b> <span t-field="doc.cover_all_electrical_components"/></p>
+                                        <p style="max-height:7px" t-if="doc.inspect_pre_operational"><b>Inspect pre-operational equipment : </b><span t-field="doc.inspect_pre_operational"/></p>
+                                        <p style="max-height:7px" t-if="doc.apply_cleaner"><b>Apply Cleaner :</b> <span t-field="doc.apply_cleaner"/></p>
+                                        <p style="max-height:7px" t-if="doc.scrubbing_equipment"><b>Scrubbing Equipment :</b> <span t-field="doc.scrubbing_equipment"/></p>
+                                        <p style="max-height:7px" t-if="doc.approved_sanitizer"><b>Approved Sanitizer :</b><span t-field="doc.approved_sanitizer"/></p>
+                                        <p style="max-height:7px" t-if="doc.spray_equipment"><b>Spray equipment/utensils with water :</b> <span t-field="doc.spray_equipment"/></p>
+                                        <p style="max-height:7px" t-if="doc.use_appropriate_tools"><b>Use appropriate tools :</b><span t-field="doc.use_appropriate_tools"/></p>
+                                        <p style="max-height:7px" t-if="doc.bulk_product"><b>Bulk product and packaging storage:</b> <span t-field="doc.bulk_product"/></p>
+                                        <p style="max-height:7px" t-if="doc.re_assemble_equipment"><b>Re-assemble equipment : </b><span t-field="doc.re_assemble_equipment"/></p>
+                                        <p style="max-height:7px" t-if="doc.unacceptable_results"><b>Unacceptable results : </b><span t-field="doc.unacceptable_results"/></p>
+                                    </div>
+                                </div>
+                                <span><h3><strong>Environmental</strong></h3></span>
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:9px">
+                                        <p style="max-height:7px" t-if="doc.wipe_production_room_worktables"><b>Wipe production room work tables : </b><span t-field="doc.wipe_production_room_worktables"/></p>
+                                        <p style="max-height:7px" t-if="doc.hang_hose"><b>Hang hose : </b><span t-field="doc.hang_hose"/></p>
+                                        <p style="max-height:7px" t-if="doc.sweep_mop_production_floors"><b>Sweep and mop production floors : </b><span t-field="doc.sweep_mop_production_floors"/></p>
+                                        <p style="max-height:7px" t-if="doc.wipe_down_any_dust"><b>Wipe Down any Dust : </b><span t-field="doc.wipe_down_any_dust"/></p>
+
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:9px">
+                                        <p style="max-height:7px" t-if="doc.sweep_mats_and_mop"><b>Sweep mats and mop as needed : </b><span t-field="doc.sweep_mats_and_mop"/></p>
+                                        <p style="max-height:7px" t-if="doc.wipe_down_wash_sinks_daily"><b>Wipe down all hand wash sinks daily : </b><span t-field="doc.wipe_down_wash_sinks_daily"/></p>
+                                        <p style="max-height:7px" t-if="doc.damp_mop_floor_wipe_walls"><b>Damp mop floor and wipe walls : </b><span t-field="doc.damp_mop_floor_wipe_walls"/></p>
+
+                                    </div>
+                                </div>
+                                <span><h3><strong>Other</strong></h3></span>
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:9px">
+                                        <p style="max-height:7px" t-if="doc.allergen_preventive_controls"><b>Allergen Preventive Controls : </b><span t-field="doc.allergen_preventive_controls"/></p>
+                                        <p style="max-height:7px" t-if="doc.empty_trash_bins"><b>Empty trash bins : </b><span t-field="doc.empty_trash_bins"/></p>
+                                        <p style="max-height:7px" t-if="doc.wipe_production_room"><b>Wipe Production Room : </b><span t-field="doc.wipe_production_room"/></p>
+                                        <p style="max-height:7px" t-if="doc.wash_trash_bins"><b>Wash trash bins : </b><span t-field="doc.wash_trash_bins"/></p>
+                                        <p style="max-height:7px" t-if="doc.in_house_monitoring"><b>In-house monitoring : </b><span t-field="doc.in_house_monitoring"/></p>
+
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:9px">
+                                        <p style="max-height:7px" t-if="doc.good_manufacturing_practices"><b>Good Manufacturing Practices : </b><span t-field="doc.good_manufacturing_practices"/></p>
+                                        <p style="max-height:7px" t-if="doc.sanitize_conveyor_belt"><b>Sanitize conveyor belt : </b><span t-field="doc.sanitize_conveyor_belt"/></p>
+                                        <p style="max-height:7px" t-if="doc.sanitize_all_parts"><b>Sanitize all parts : </b><span t-field="doc.sanitize_all_parts"/></p>
+                                        <p style="max-height:7px" t-if="doc.disassemble_clean_and_sanitize"><b>Disassemble, clean and sanitize : </b><span t-field="doc.disassemble_clean_and_sanitize"/></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

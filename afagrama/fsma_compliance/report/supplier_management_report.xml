@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="supplier_management_report">
+            <t t-name="supplier_management">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="web.external_layout">
+                            <div class="page" style="page-break-inside: avoid;">
+                                <div class="row">
+                                    <div name="address" class="col-xs-5 col-xs-offset-7"/>
+                                </div>
+                                <h2 name="title"><strong><t t-esc="doc.name"/></strong></h2>
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', doc.id, 600, 100)" style="width:300px;height:50px" class="pull-right mb16"/>
+                                <h3 name="title">
+                                    <strong>ID : </strong>
+                                    <t t-esc="doc.id"/>
+                                </h3>
+                                <div class="clearfix"/>
+                                <div class="row mt32 mb32" style="font-size:13px">
+                                    <div class="col-xs-6 pull-left">
+                                        <strong>Vendor</strong>
+                                        <p><t t-esc="doc.vendor_id.name"/></p>
+                                    </div>
+                                    <div class="col-xs-6 pull-right">
+                                        <strong>Created on</strong>
+                                        <p><t t-esc="doc.create_date"/></p>
+                                        <strong>Created by</strong>
+                                        <p><t t-esc="doc.create_uid.name"/></p>
+                                        <strong>Last Updated by</strong>
+                                        <p><t t-esc="doc.write_uid.name"/></p>
+                                    </div>
+                                </div>
+
+                                <h3><strong>Information</strong></h3>
+
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:13px">
+                                        <p t-if="doc.organic_certification"><b>Organic Certification : </b> File Uploaded </p>
+                                        <p t-if="not doc.organic_certification"><b>Organic Certification : </b> No File </p>
+
+                                        <p t-if="doc.organic_Cert_issue_date"><b>Organic Cert. Issue Date : </b><span t-field="doc.organic_Cert_issue_date"/></p>
+                                        <p t-if="not doc.organic_Cert_issue_date"><b>Organic Cert. Issue Date : </b>......</p>
+
+                                        <p t-if="doc.organic_cert_exp_date"><b>Organic Cert. Expiration Date : </b><span t-field="doc.organic_cert_exp_date"/></p>
+                                        <p t-if="not doc.organic_cert_exp_date"><b>Organic Cert. Expiration Date : </b>......</p>
+
+                                        <p t-if="doc.fs_cert"><b>Food Safety Certificate : </b><span t-field="doc.fs_cert"/></p>
+                                        <p t-if="not doc.fs_cert"><b>Food Safety Certificate : </b>......</p>
+
+                                        <p t-if="doc.fs_cert_file"><b>Food Safety Certificate : </b> File Uploaded </p>
+                                        <p t-if="not doc.fs_cert_file"><b>Food Safety Certificate : </b>No File</p>
+
+                                        <p t-if="doc.fs_cert_exp_date"><b>Food Safety Certificate Exp. Date : </b><span t-field="doc.fs_cert_exp_date"/></p>
+                                        <p t-if="not doc.fs_cert_exp_date"><b>Food Safety Certificate Exp. Date : </b>......</p>
+
+                                        <p t-if="doc.third_parity_audit_date"><b>3rd Party Audit Date : </b><span t-field="doc.third_parity_audit_date"/></p>
+                                        <p t-if="not doc.third_parity_audit_date"><b>3rd Party Audit Date : </b>......</p>
+
+                                        <p t-if="doc.third_parity_report"><b>3rd Party Report Reviewed : </b><span t-field="doc.third_parity_report"/></p>
+                                        <p t-if="not doc.third_parity_report"><b>3rd Party Report Reviewed : </b>......</p>
+
+                                        <p t-if="doc.annual_approval_date"><b>Annual Approval Date : </b><span t-field="doc.annual_approval_date"/></p>
+                                        <p t-if="not doc.annual_approval_date"><b>Annual Approval Date : </b>......</p>
+
+                                        <p t-if="doc.comments"><b>Comments : </b><span t-field="doc.comments"/></p>
+                                        <p t-if="not doc.comments"><b>Comments : </b>......</p>
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:13px">
+                                        <p t-if="doc.specs"><b>Specs : </b>Yes</p>
+                                        <p t-if="not doc.specs"><b>Specs : </b>No</p>
+
+                                        <p t-if="doc.allergen_statement"><b>Allergen Statement : </b>Yes</p>
+                                        <p t-if="not doc.allergen_statement"><b>Allergen Statement : </b>No</p>
+
+                                        <p t-if="doc.gluten_cert_exp_date"><b>Gluten Cert. Exp Date : </b><span t-field="doc.gluten_cert_exp_date"/></p>
+                                        <p t-if="not doc.gluten_cert_exp_date"><b>Gluten Cert. Exp Date : </b>.......</p>
+
+                                        <p t-if="doc.vendor_questionnaire"><b>Vendor Questionnaire : </b>Yes</p>
+                                        <p t-if="not doc.vendor_questionnaire"><b>Vendor Questionnaire : </b>No</p>
+
+                                        <p t-if="doc.nutrition_data"><b>Nutrition Data : </b>Yes</p>
+                                        <p t-if="not doc.nutrition_data"><b>Nutrition Data : </b>No</p>
+
+                                        <p t-if="doc.aflatoxin_statement"><b>Aflatoxin Statement : </b>Yes</p>
+                                        <p t-if="not doc.aflatoxin_statement"><b>Aflatoxin Statement : </b>No</p>
+
+                                        <p t-if="doc.letter_of_guarantee"><b>Letter of Guarantee : </b>Yes</p>
+                                        <p t-if="not doc.letter_of_guarantee"><b>Letter of Guarantee : </b>No</p>
+
+                                        <p t-if="doc.letter_of_guarantee_date"><b>Letter of Guarantee : </b><span t-field="doc.letter_of_guarantee_date"/></p>
+                                        <p t-if="not doc.letter_of_guarantee_date"><b>Letter of Guarantee : </b>.......</p>
+
+                                        <p t-if="doc.reg_compliance_review"><b>Reg. Compliance Review : </b>Yes</p>
+                                        <p t-if="not doc.reg_compliance_review"><b>Reg. Compliance Review : </b>No</p>
+
+                                    </div>
+                                </div>
+                                <table class="o_list_view table table-condensed table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center"><strong>Internal Reference</strong></th>
+                                            <th class="text-center"><strong>Name</strong></th>
+                                            <th class="text-center"><strong>attributes</strong></th>
+                                            <th class="text-center"><strong>Sale Price</strong></th>
+                                            <th class="text-center"><strong>Qty On Hand</strong></th>
+                                            <th class="text-center"><strong>Forcast Quantity</strong></th>
+                                            <th class="text-center"><strong>uom</strong></th>
+                                            <th class="text-center"><strong>Barcode</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="doc.product_ids" t-as="line">
+                                            <td class="text-center">
+                                                <span t-field="line.default_code"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-field="line.name"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="'; '.join(map(lambda x: x.display_name, line.attribute_value_ids))"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-field="line.lst_price"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-field="line.qty_available"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-field="line.virtual_available"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-field="line.uom_id"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-field="line.barcode"/>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+    </data>
+</odoo>
+
+
+
+

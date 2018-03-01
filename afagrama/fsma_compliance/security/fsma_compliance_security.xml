@@ -1,0 +1,19 @@
+<odoo>
+    <data noupdate="1">
+        <record id="fsma_category" model="ir.module.category">
+            <field name="name">FSMA Controls</field>
+        </record>
+
+        <record id="fsma_compliance_qc" model="res.groups">
+            <field name="name">QC</field>
+            <field name="category_id" ref="fsma_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="fsma_compliance_pcqi" model="res.groups">
+            <field name="name">PCQI</field>
+            <field name="category_id" ref="fsma_category"/>
+            <field name="implied_ids" eval="[(4, ref('fsma_compliance_qc'))]"/>
+        </record>
+    </data>
+</odoo>

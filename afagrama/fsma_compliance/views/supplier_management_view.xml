@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--# ____________________________Umar-Aziz_______________________________-->
+
+        <record id="supplier_management_form_view" model="ir.ui.view">
+            <field name="name">supplier.management.form.view</field>
+            <field name="model">supplier.management</field>
+            <field name="arch" type="xml">
+                <form string="Supplier Management">
+                    <header>
+                    </header>
+                    <sheet string="Supplier Management">
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" required="1"/>
+                            </h1>
+                        </div>
+                        <group name="blank">
+                            <group/>
+                            <group/>
+                        </group>
+                        <group name="info">
+                            <group>
+                                <field name="vendor_id" domain="[('supplier', '=', True)]"/>
+                            </group>
+
+                            <group>
+                                <field name="create_date" string="Create on" readonly="1"/>
+                                <field name="create_uid" string="Create by" readonly="1"/>
+                                <field name="write_uid" readonly="1"/>
+                            </group>
+                        </group>
+                        <group name="supplier_management">
+                            <group name="supp_g1">
+                                <field name="organic_certification"/>
+                                <field name="organic_Cert_issue_date"/>
+                                <field name="organic_cert_exp_date"/>
+                                <field name="fs_cert"/>
+                                <field name="fs_cert_file"/>
+                                <field name="fs_cert_exp_date"/>
+                                <field name="third_parity_audit_date"/>
+                                <field name="third_parity_report"/>
+                                <field name="annual_approval_date"/>
+                                <field name="comments"/>
+                            </group>
+                            <group name="supp_g2">
+                                <field name="specs"/>
+                                <field name="allergen_statement"/>
+                                <field name="gluten_cert_exp_date"/>
+                                <field name="vendor_questionnaire"/>
+                                <field name="nutrition_data"/>
+                                <field name="aflatoxin_statement"/>
+                                <field name="letter_of_guarantee"/>
+                                <field name="letter_of_guarantee_date"/>
+                                <field name="reg_compliance_review"/>
+                            </group>
+                        </group>
+                        <notebook name="Products">
+                            <page name="product" string="Product">
+                                <field name="product_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="supplier_management_form_tree" model="ir.ui.view">
+            <field name="name">supplier.management.form.tree</field>
+            <field name="model">supplier.management</field>
+            <field name="arch" type="xml">
+                <tree string="Supplier Management">
+                    <field name="name"/>
+                    <field name="id"/>
+                    <field name="create_date" string="Create on"/>
+                    <field name="create_uid" string="Create by"/>
+                    <field name="write_uid"/>
+                </tree>
+            </field>
+        </record>
+        <record id="supplier_management_form_action" model="ir.actions.act_window">
+            <field name="name">Supplier Management</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">supplier.management</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="supplier_management_form_menu"
+                  name="Supplier Management"
+                  parent="contacts.menu_contacts"
+                  action="supplier_management_form_action"
+                  sequence="2"/>
+        <record id="contacts.res_partner_menu_config" model="ir.ui.menu">
+            <field name="sequence">4</field>
+        </record>
+
+    </data>
+</odoo>

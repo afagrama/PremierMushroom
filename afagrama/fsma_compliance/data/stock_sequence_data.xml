@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--
+            Sequences for pickings
+        -->
+        <record id="seq_pallet_package" model="ir.sequence">
+            <field name="name">Packages</field>
+            <field name="code">stock.pallet.package</field>
+            <field name="prefix">PLT</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+
+</odoo>

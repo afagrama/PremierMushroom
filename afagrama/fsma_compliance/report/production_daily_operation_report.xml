@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="production_operational_checklist_report">
+
+            <t t-name="production_operational_checklist">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="web.external_layout">
+                            <div class="page" style="page-break-inside: avoid;">
+                                <div class="row">
+                                    <div name="address" class="col-xs-5 col-xs-offset-7"/>
+                                </div>
+                                <h2 name="title"><strong><t t-esc="doc.name"/></strong></h2>
+                                <div class="clearfix"/>
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', doc.id, 600, 100)" style="width:300px;height:50px" class="pull-right mb16"/>
+                                <h3 name="title"><strong>Code : </strong><t t-esc="doc.id"/></h3>
+                                <div class="row mt32 mb32">
+                                    <div class="col-xs-6 pull-left">
+                                        <strong>Created by</strong>
+                                        <p><t t-esc="doc.create_uid.name"/></p>
+                                        <strong>Created on</strong>
+                                        <p><t t-esc="doc.create_date"/></p>
+                                    </div>
+                                </div>
+
+                                <h3><strong>cGMP</strong></h3>
+
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:11px">
+                                        <p><b>Poor Health : </b><span t-field="doc.poor_health"/></p>
+                                        <p><b>Designated uniform : </b><span t-field="doc.designated_uniform"/></p>
+                                        <p><b>Handle with care : </b><span t-field="doc.handle_with_care"/></p>
+                                        <p><b>Use Sanitizer : </b><span t-field="doc.use_sanitizer"/></p>
+                                        <p><b>Outer Garments requirments : </b><span t-field="doc.outer_garments_requirements"/></p>
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:11px">
+                                        <p><b>No smoking : </b><span t-field="doc.no_smoking"/></p>
+                                        <p><b>Designated area for meds : </b><span t-field="doc.designated_area_for_meds"/></p>
+                                        <p><b>Supply products : </b><span t-field="doc.supply_products"/></p>
+                                        <p><b>Hand wash facilities : </b><span t-field="doc.hand_wash_facilities"/></p>
+                                    </div>
+                                </div>
+
+                                <h3><strong>SSOP</strong></h3>
+
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:11px">
+                                        <p><b>Prevent Contamination : </b><span t-field="doc.prevent_contamination"/></p>
+                                        <p><b>Equipment are cleaned and sanitized : </b><span t-field="doc.equipment_are_cleaned_and_sanitized"/></p>
+                                    </div>
+                                </div>
+
+                                <h3><strong>Equipment</strong></h3>
+
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:11px">
+                                        <p><b>Wipe Dry equipment : </b><span t-field="doc.wipe_dry_equipment"/></p>
+                                        <p><b>Ensure Sanitizing conveyor belt : </b><span t-field="doc.ensure_sanitizing_conveyor_belt"/></p>
+                                        <p><b>Maintain Inventory: </b><span t-field="doc.maintain_inventory"/></p>
+                                        <p><b>Malfunctioning pieces : </b><span t-field="doc.malfunctioning_pieces"/></p>
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:11px">
+                                        <p><b>Disassemble, clean and sanitize : </b><span t-field="doc.disassemble_clean_sanitize"/></p>
+                                        <p><b>Disassemble parts and sanitize : </b><span t-field="doc.disassemble_parts_and_sanitize"/></p>
+                                        <p><b>Remove debris : </b><span t-field="doc.remove_debris"/></p>
+                                    </div>
+                                </div>
+
+                                <h3><strong>Other</strong></h3>
+
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:11px">
+                                        <p><b>Prevent Cross contact : </b><span t-field="doc.prevent_cross_contact"/></p>
+                                        <p><b>Maintain Log : </b><span t-field="doc.maintain_log"/></p>
+                                        <p><b>Maintain H2O2 : </b><span t-field="doc.maintain_H2O2"/></p>
+                                        <p><b>CIP Procedures : </b><span t-field="doc.CIP_procedures"/></p>
+                                        <p><b>Clean and Sanitize equipment : </b><span t-field="doc.clean_sanitize_equipment"/></p>
+                                        <p><b>Pallets : </b><span t-field="doc.pallets"/></p>
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:11px">
+                                        <p><b>Production Supplies : </b><span t-field="doc.production_supplies"/></p>
+                                        <p><b>Maintain bags : </b><span t-field="doc.maintain_bags"/></p>
+                                        <p><b>hygiene practices, and procedures : </b><span t-field="doc.hygiene_practices_and_procedures"/></p>
+                                        <p><b>Identify issues : </b><span t-field="doc.identify_issues"/></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+    </data>
+</odoo>
+

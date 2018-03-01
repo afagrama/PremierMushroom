@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_foreign_material_qc,foreign.material.qc,model_foreign_material,fsma_compliance.fsma_compliance_qc,1,1,0,0
+access_foreign_material_pcqi,foreign.material.pcqi,model_foreign_material,fsma_compliance.fsma_compliance_pcqi,1,1,1,1
+access_lab_submission_form_qc,lab.submission.form.qc,model_lab_submission_form,fsma_compliance.fsma_compliance_qc,1,1,0,0
+access_lab_submission_form_pcqi,lab.submission.form.pcqi,model_lab_submission_form,fsma_compliance.fsma_compliance_pcqi,1,1,1,1
+access_production_daily_operation_qc,production.daily.operation.qc,model_production_daily_operation,fsma_compliance.fsma_compliance_qc,1,1,0,0
+access_production_daily_operation_pcqi,production.daily.operation.pcqi,model_production_daily_operation,fsma_compliance.fsma_compliance_pcqi,1,1,1,1
+access_prod_pre_operation_qc,prod.pre.operation.qc,model_prod_pre_operation,fsma_compliance.fsma_compliance_qc,1,1,0,0
+access_prod_pre_operation_pcqi,prod.pre.operation.pcqi,model_prod_pre_operation,fsma_compliance.fsma_compliance_pcqi,1,1,1,1
+access_restroom_maintenance_qc,restroom.maintenance.qc,model_restroom_maintenance,fsma_compliance.fsma_compliance_qc,1,1,0,0
+access_restroom_maintenance_pcqi,restroom.maintenance.pcqi,model_restroom_maintenance,fsma_compliance.fsma_compliance_pcqi,1,1,1,1
+access_ssop_operation_check_qc,ssop.operation.check.qc,model_ssop_operation_check,fsma_compliance.fsma_compliance_qc,1,1,0,0
+access_ssop_operation_check_pcqi,ssop.operation.check.pcqi,model_ssop_operation_check,fsma_compliance.fsma_compliance_pcqi,1,1,1,1
+access_supplier_management_qc,supplier.management.qc,model_supplier_management,fsma_compliance.fsma_compliance_qc,1,1,0,0
+access_supplier_management_pcqi,supplier.management.pcqi,model_supplier_management,fsma_compliance.fsma_compliance_pcqi,1,1,1,1

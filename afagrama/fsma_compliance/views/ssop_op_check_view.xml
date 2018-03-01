@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <!--# ____________________________Umar-Aziz_______________________________-->
+        <record id="ssop_operation_check_form_view" model="ir.ui.view">
+            <field name="name">ssop.operation.check.form.view</field>
+            <field name="model">ssop.operation.check</field>
+            <field name="arch" type="xml">
+                <form string="Operational Checklist">
+                    <header>
+                    </header>
+                    <sheet string="Operational Checklist">
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+
+                                <field name="warehouse"/>
+                            </group>
+                            <group>
+                                <field name="create_uid" readonly="1"/>
+                                <field name="create_date" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook name="operational_checklist">
+                            <page name="ccmp" string="cCMP">
+                                <group name="ccmp">
+                                    <group name="ccmp_g1">
+                                        <field name="illness"/>
+                                        <field name="clean_garments"/>
+                                        <field name="eating_or_drinking"/>
+                                        <field name="wash_hands"/>
+                                    </group>
+                                    <group name="ccmp_g2">
+                                        <field name="jewelry_policy"/>
+                                        <field name="sanitizers_operation"/>
+                                        <field name="sash_facilities_supplied"/>
+                                        <field name="change_rooms" attrs="{'invisible': [('warehouse', '=', 'one')]}"/>
+                                        <field name="pest_control"/>
+                                        <field name="uniform" attrs="{'invisible': [('warehouse', '=', 'two')]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="process" string="Process">
+                                <group name="process">
+                                    <group name="process_g1">
+                                        <field name="receiving"/>
+                                        <field name="allergen_control"/>
+                                        <field name="shipping"/>
+                                    </group>
+                                    <group name="process_g2">
+                                        <field name="effective_EMP" attrs="{'invisible': [('warehouse', '=', 'two')]}"/>
+                                        <field name="FM_control" attrs="{'invisible': [('warehouse', '=', 'two')]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="facility" string="Facility">
+                                <group name="facility">
+                                    <group name="facility_g1">
+                                        <field name="Mop_and_broom"/>
+                                        <field name="security" attrs="{'invisible': [('warehouse', '=', 'one')]}"/>
+                                        <field name="water_delivery"/>
+                                        <field name="floors_and_drains" attrs="{'invisible': [('warehouse', '=', 'one')]}"/>
+                                        <field name="Walls_doors_and_ceiling" attrs="{'invisible': [('warehouse', '=', 'one')]}"/>
+                                        <field name="exterior_dock"/>
+                                        <field name="inspect_hardware" attrs="{'invisible': [('warehouse', '=', 'two')]}"/>
+                                        <field name="dock_area" attrs="{'invisible': [('warehouse', '=', 'two')]}"/>
+                                    </group>
+                                    <group name="facility_g2">
+                                        <field name="dock_doors"/>
+                                        <field name="sweep_front" attrs="{'invisible': [('warehouse', '=', 'one')]}"/>
+                                        <field name="HVAC_Filter_replacement" attrs="{'invisible': [('warehouse', '=', 'one')]}"/>
+                                        <field name="fire_safelty"/>
+                                        <field name="waste_mngt"/>
+                                        <field name="waste_mngt" attrs="{'invisible': [('warehouse', '=', 'two')]}"/>
+                                        <field name="waste_mngt" attrs="{'invisible': [('warehouse', '=', 'two')]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="facility_lights" string="Facility Lights">
+                                <group name="facility_lights">
+                                    <group name="facility_lights_g1">
+                                        <field name="food_processing_areas"/>
+                                        <field name="inspection_stations"/>
+                                        <field name="storage_areas"/>
+                                    </group>
+                                    <group name="facility_lights_g2">
+                                        <field name="light_fittings_are_clean"/>
+                                        <field name="light_fixtures"/>
+                                        <field name="light_fittings_breakage"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="equipment" string="Equipment">
+                                <group name="equipment">
+                                    <group name="equipment_g1">
+                                        <field name="forklift"/>
+                                        <field name="lockout"  attrs="{'invisible': [('warehouse', '=', 'one')]}"/>
+                                        <field name="blade_sharpness"/>
+                                        <field name="knife_blade"/>
+                                    </group>
+                                    <group name="equipment_g2">
+                                        <field name="blade_disposal"/>
+                                        <field name="cutters_and_knives_location"/>
+                                        <field name="breakroom"  attrs="{'invisible': [('warehouse', '=', 'two')]}"/>
+                                        <field name="key_control" attrs="{'invisible': [('warehouse', '=', 'one')]}"/>
+                                        <field name="haz_comm" attrs="{'invisible': [('warehouse', '=', 'one')]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="other" string="Other">
+                                <group name="other">
+                                    <group name="other_g1">
+                                        <field name="first_aid"/>
+                                        <field name="shelf_stable_packaged_goods"/>
+                                        <field name="hazardous_chemicals"/>
+
+                                    </group>
+                                    <group name="other_g2">
+                                        <field name="scales" attrs="{'invisible': [('warehouse', '=', 'one')]}"/>
+                                        <field name="safety_meeting" attrs="{'invisible': [('warehouse', '=', 'two')]}"/>
+                                        <field name="toolbox_talks" attrs="{'invisible': [('warehouse', '=', 'one')]}"/>
+                                        <field name="UPS" attrs="{'invisible': [('warehouse', '=', 'one')]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                      <field name="message_follower_ids" widget="mail_followers"/>
+                      <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="ssop_operation_check_form_tree" model="ir.ui.view">
+            <field name="name">ssop.operation.check.form.tree</field>
+            <field name="model">ssop.operation.check</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="id" string="Code"/>
+                    <field name="create_date" string="Create on"/>
+                    <field name="create_uid" string="Create by"/>
+                </tree>
+            </field>
+        </record>
+        <record id="ssop_operation_check_form_action" model="ir.actions.act_window">
+            <field name="name">SSOP Operational Checklist</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ssop.operation.check</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="ssop_operation_check_form_menu"
+                  name="Operational Checklist"
+                  parent="SSOP_menu"
+                  action="ssop_operation_check_form_action"
+                  sequence="1"/>
+
+    </data>
+</odoo>

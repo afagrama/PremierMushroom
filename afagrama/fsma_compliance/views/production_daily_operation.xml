@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <!--# ____________________________Umar-Aziz_______________________________-->
+        <record id="production_daily_operation_form_view" model="ir.ui.view">
+            <field name="name">production.daily.operation.form.view</field>
+            <field name="model">production.daily.operation</field>
+            <field name="arch" type="xml">
+                <form string="Prod Daily OP Checklist">
+                    <header>
+                    </header>
+                    <sheet string="Prod Daily OP Checklist">
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="create_uid"  readonly="1"/>
+                                <field name="create_date"  readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook name="daily_op">
+                            <page name="cgmp" string="cGMP">
+                                <group name="cgmp">
+                                    <group name="cgmp_g1">
+                                        <field name="poor_health"/>
+                                        <field name="designated_uniform"/>
+                                        <field name="handle_with_care"/>
+                                        <field name="use_sanitizer"/>
+                                        <field name="outer_garments_requirements"/>
+                                    </group>
+                                    <group name="cgmp_g2">
+                                        <field name="no_smoking"/>
+                                        <field name="designated_area_for_meds"/>
+                                        <field name="supply_products"/>
+                                        <field name="hand_wash_facilities"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="ssop" string="SSOP">
+                                <group name="ssop">
+                                    <group name="ssop_g1">
+                                        <field name="prevent_contamination"/>
+                                        <field name="equipment_are_cleaned_and_sanitized"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="equipment" string="Equipment">
+                                <group name="equipment">
+                                    <group name="equipment_g1">
+                                        <field name="wipe_dry_equipment"/>
+                                        <field name="ensure_sanitizing_conveyor_belt"/>
+                                        <field name="maintain_inventory"/>
+                                        <field name="malfunctioning_pieces"/>
+                                    </group>
+                                    <group name="equipment_g2">
+                                        <field name="disassemble_clean_sanitize"/>
+                                        <field name="disassemble_parts_and_sanitize"/>
+                                        <field name="remove_debris"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="other" string="Other">
+                                <group name="other">
+                                    <group name="other_g1">
+                                        <field name="prevent_cross_contact"/>
+                                        <field name="maintain_log"/>
+                                        <field name="maintain_H2O2"/>
+                                        <field name="CIP_procedures"/>
+                                        <field name="clean_sanitize_equipment"/>
+                                        <field name="pallets"/>
+                                    </group>
+                                    <group name="other_g2">
+                                        <field name="production_supplies"/>
+                                        <field name="maintain_bags"/>
+                                        <field name="hygiene_practices_and_procedures"/>
+                                        <field name="identify_issues"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="production_daily_operation_form_tree" model="ir.ui.view">
+            <field name="name">production.daily.operation.form.tree</field>
+            <field name="model">production.daily.operation</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="id" string="Code"/>
+                    <field name="create_date" string="Create on"/>
+                    <field name="create_uid" string="Create by"/>
+                </tree>
+            </field>
+        </record>
+        <record id="production_daily_operation_form_action" model="ir.actions.act_window">
+            <field name="name">Production Daily Operation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">production.daily.operation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="production_daily_operation_form_menu"
+                  name="Prod OP Checklist"
+                  parent="SSOP_menu"
+                  action="production_daily_operation_form_action"
+                  sequence="2"/>
+
+    </data>
+</odoo>

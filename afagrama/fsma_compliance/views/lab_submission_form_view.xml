@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--# ____________________________Umar-Aziz_______________________________-->
+        <record id="lab_submission_form_form_view" model="ir.ui.view">
+            <field name="name">lab.submission.form.form.view</field>
+            <field name="model">lab.submission.form</field>
+            <field name="arch" type="xml">
+                <form string="Lab Submission Form">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="wt_results,pass"/>
+                        <button name="lab_to_waiting" attrs="{'invisible': [('state', '=', 'wt_results')]}" string="Return To Test" type="object" class="oe_highlight"/>
+                        <button name="lab_pass" states="wt_results" string="Test Pass" type="object" class="oe_highlight"/>
+                        <button name="lab_destroy" attrs="{'invisible': [('state', '!=', 'wt_results')]}" string="Test Fail" type="object" class="oe_highlight"/>
+                    </header>
+                    <sheet string="Lab Submission Form">
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="product_id"/>
+                                <field name="stock_id"/>
+                                <field name="lot_id"/>
+                                <field name="test_result"/>
+                                <field name="destroy_cause" attrs="{'invisible':[('state','!=', 'fail')]}"/>
+                                <field name="lab_type_id" readonly="1"/>
+
+                            </group>
+                            <group>
+                                <field name="create_date" readonly="1"/>
+                                <field name="create_uid" readonly="1"/>
+
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="salmonella_spp"/>
+                                <field name="staphylococcus_aureus"/>
+                                <field name="yeast_and_mold"/>
+                                <field name="gluten"/>
+                                <field name="microbial_identification"/>
+                                <field name="others"/>
+                                <field name="special_instructions"/>
+                            </group>
+                            <group>
+                                <field name="aerobic_plate_count"/>
+                                <field name="cl_ostridium_spp"/>
+                                <field name="coli_form"/>
+                                <field name="e_coli"/>
+                                <field name="e_coli_O157_H7"/>
+                                <field name="Listeria_spp"/>
+                                <field name="Listeria_monocytogenes"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="lab_submission_form_form_tree" model="ir.ui.view">
+            <field name="name">lab.submission.form.form.tree</field>
+            <field name="model">lab.submission.form</field>
+            <field name="arch" type="xml">
+                <tree decoration-danger="state == 'fail'" >
+                    <field name="state" invisible="1"/>
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="create_date" string="Create on"/>
+                    <field name="create_uid" string="Create by"/>
+                </tree>
+            </field>
+        </record>
+        <record id="lab_submission_form_form_action" model="ir.actions.act_window">
+            <field name="name">Lab Submission Form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">lab.submission.form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="test_result_action_wizard_view" model="ir.ui.view">
+            <field name="name">test.result.action.wizard.view</field>
+            <field name="model">test.result.action</field>
+            <field name="arch" type="xml">
+                <form string="Test Result">
+                    <sheet>
+                        <group>
+                            <field name="name" invisible="not context.get('action_result') == 'fail'" required="context.get('action_result') == 'fail'"/>
+                            <field name="lab_id" invisible="1"/>
+                            <field name="stock_id" readonly="1"/>
+                            <field name="lab_type_id"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="confirm_action" type="object" string="Confirm" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="lab_location_type_form_view" model="ir.ui.view">
+            <field name="name">lab.location.type.form.view</field>
+            <field name="model">lab.location.type</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="lab_location_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="lab_location_type_form_tree" model="ir.ui.view">
+            <field name="name">lab.location.type.form.tree</field>
+            <field name="model">lab.location.type</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="lab_location_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="lab_location_type_form_action" model="ir.actions.act_window">
+            <field name="name">LAB Location Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">lab.location.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record id="lab_submission_action_filter" model="ir.ui.view">
+            <field name="name">lab.submission.action.filter</field>
+            <field name="model">lab.submission.form</field>
+            <field name="arch" type="xml">
+                <search string="Search Lab">
+                    <field name="lab_type_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="lab_submission_action_kanban" model="ir.actions.act_window">
+            <field name="name">LAB Submission</field>
+            <field name="res_model">lab.submission.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{
+                'search_default_lab_type_id': [active_id],
+                'default_lab_type_id': active_id,
+                }</field>
+        </record>
+
+        <record id="stock_picking_pcqi_action" model="ir.actions.act_window">
+            <field name="name">Receipt PCQI</field>
+            <field name="res_model">stock.picking</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="stock_picking_pcqi_tree_view" model="ir.ui.view">
+            <field name="name">stock.picking.pcqi.tree.view</field>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="lab_type_id"/>
+                    <field name="partner_id"/>
+                    <field name="pcqi_user_id"/>
+                    <field name="pcqi_date"/>
+                    <field name="lab_submission_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_window_picking_pcqi_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="stock_picking_pcqi_tree_view"/>
+            <field name="act_window_id" ref="stock_picking_pcqi_action"/>
+        </record>
+
+        <record id="lab_location_type_form_kanban" model="ir.ui.view">
+            <field name="name">lab.location.type.form.kanban</field>
+            <field name="model">lab.location.type</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_maintenance_team_kanban" create="0">
+                    <field name="name"/>
+                    <field name="color"/>
+                    <field name="lab_location_id"/>
+                    <field name="count_lab_test"/>
+                    <field name="count_lab_clean"/>
+                    <field name="count_lab_production"/>
+                    <field name="count_lab_reject"/>
+
+                    <field name="count_pcqi_inventory"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-if="['Testing', 'Cleaning', 'Production', 'Reject', 'PCQI'].indexOf(record.name.raw_value) > -1" t-attf-class="#{kanban_color(record.color.raw_value)}">
+                                <div>
+                                    <div t-attf-class="o_kanban_card_header">
+                                        <div class="o_kanban_card_header_title">
+                                            <div class="o_primary">
+                                                <t t-if="record.name.raw_value !='PCQI'">
+
+                                                    <a type="object" name="get_lab_submission_action_kanban">
+                                                        <b>
+                                                            <field name="name"/>
+                                                        </b>
+                                                    </a>
+                                                </t>
+                                                <t t-if="record.name.raw_value =='PCQI'">
+                                                    <span>
+                                                        <h3>
+                                                            <b>
+                                                                PCQI Report
+                                                            </b>
+                                                        </h3>
+                                                    </span>
+                                                </t>
+                                            </div>
+                                            <div class="o_secondary"><t t-esc="lab_location_id"/></div>
+
+                                        </div>
+                                        <div class="o_dropdown_kanban dropdown">
+                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >
+                                                <span class="fa fa-ellipsis-v"/>
+                                            </a>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top:30px;"/>
+                                    <div class="container o_kanban_card_content">
+                                        <div class="row">
+                                            <div class="col-xs-6 o_kanban_primary_left">
+                                                <t t-if="record.name.raw_value !='PCQI'">
+                                                    <button class="btn btn-primary" name="get_lab_submission_action_kanban" type="object">
+                                                        <span t-if="record.name.raw_value =='Testing'"><t t-esc="record.count_lab_test.value"/> To Test</span>
+                                                        <span t-if="record.name.raw_value =='Cleaning'"><t t-esc="record.count_lab_clean.value"/> To Clean</span>
+                                                        <span t-if="record.name.raw_value =='Production'"><t t-esc="record.count_lab_production.value"/> To Production</span>
+                                                        <span t-if="record.name.raw_value =='Reject'"><t t-esc="record.count_lab_reject.value"/> Reject</span>
+                                                    </button>
+                                                </t>
+                                                <t t-if="record.name.raw_value =='PCQI'">
+                                                    <div class="row">
+                                                        <div class="col-xs-9">
+                                                            <a name="%(stock_picking_pcqi_action)d" type="action" context="{'search_default_state': 'done', 'search_default_id': 1}">
+                                                                Receipt PCQI
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <t t-esc="record.count_pcqi_inventory.value"/>
+                                                        </div>
+                                                        <div class="col-xs-9">
+                                                            <a type="action" context="{'search_default_top_priority': 1}">
+                                                                Dummy PCQI
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <t t-esc="record.count_lab_test.value"/>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                            </div>
+                                            <div class="col-xs-6 o_kanban_primary_right">
+                                                <t t-if="record.name.raw_value =='PCQI'">
+                                                    <div class="row">
+                                                        <div class="col-xs-9">
+                                                            <a name="%(stock_picking_pcqi_action)d" type="action" context="{'search_default_state': 'pcqi'}">
+                                                                Dummy PCQI
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <t t-esc="record.count_lab_test.value"/>
+                                                        </div>
+                                                        <div class="col-xs-9">
+                                                            <a type="action" context="{'search_default_top_priority': 1}">
+                                                                Dummy PCQI
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <t t-esc="record.count_lab_test.value"/>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="lab_location_type_action_kanban" model="ir.actions.act_window">
+            <field name="name">LAB location Type</field>
+            <field name="res_model">lab.location.type</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="view_id" ref="lab_location_type_form_kanban"/>
+        </record>
+
+        <menuitem id="lab_dashboard_menu" name="Dashboard" parent="fsma_compliance.fsma_main_menu" action="lab_location_type_action_kanban" sequence="0"/>
+        <menuitem id="lab_menu_config" name="Configuration" parent="fsma_compliance.fsma_main_menu" sequence="50"/>
+        <menuitem id="lab_location_type_menu" name="Lab Type" parent="lab_menu_config" action="lab_location_type_form_action"/>
+
+
+        <menuitem id="lab_submission_form_form_menu"
+                  name="Lab Submission Form"
+                  parent="fsma_compliance.fsma_main_menu"
+                  action="lab_submission_form_form_action"
+                  sequence="6"/>
+
+
+    </data>
+</odoo>

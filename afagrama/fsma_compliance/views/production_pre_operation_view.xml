@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <!--# ____________________________Umar-Aziz_______________________________-->
+        <record id="production_pre_operation_form_view" model="ir.ui.view">
+            <field name="name">production.pre.operation.form.view</field>
+            <field name="model">prod.pre.operation</field>
+            <field name="arch" type="xml">
+                <form string="Production Pre-Operation">
+                    <header>
+                        <button name="do_print_prod_pre_op" string="Print" type="object"/>
+                    </header>
+                    <sheet string="Production Pre-Operation">
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group/>
+                            <group/>
+                        </group>
+                        <notebook name="pre_operation">
+                            <page name="ssop" string="SSOP">
+                                <group name="SSOP">
+                                    <group name="ssop_g1">
+                                        <field name="sanitary_procedure"/>
+                                        <field name="food_contact_surfaces"/>
+                                        <field name="spray_equipment_with_water"/>
+                                        <field name="store_cleaning_materials"/>
+                                        <field name="ATP_swab"/>
+                                        <field name="transport_equipment"/>
+                                        <field name="labeling_cleaners"/>
+                                        <field name="examine_surfaces"/>
+                                        <field name="sanitizing_equipment"/>
+                                        <field name="remove_debris"/>
+                                        <field name="non_food_contact_surfaces" help="Non food contact surfaces are clean and in good operating condition."/>
+                                    </group>
+                                    <group name="ssop_g2">
+                                        <field name="inspect_for_missing_parts"/>
+                                        <field name="cover_all_electrical_components"/>
+                                        <field name="inspect_pre_operational"           help="Production Manager will inspect preoperational equipment cleaning and sanitizing"/>
+                                        <field name="apply_cleaner"/>
+                                        <field name="scrubbing_equipment"/>
+                                        <field name="approved_sanitizer"/>
+                                        <field name="spray_equipment"/>
+                                        <field name="use_appropriate_tools"/>
+                                        <field name="bulk_product"/>
+                                        <field name="re_assemble_equipment"/>
+                                        <field name="unacceptable_results"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="environmental" string="Environmental">
+                                <group name="environmental">
+                                    <group name="environmental_g1">
+                                        <field name="wipe_production_room_worktables" help="Wipe production room work tables and non-food-contact surfaces, making sure they are dust free, and sanitize. See SSOP Production for proper method."/>
+                                        <field name="hang_hose"/>
+                                        <field name="sweep_mop_production_floors"/>
+                                        <field name="wipe_down_any_dust"/>
+                                    </group>
+                                    <group name="environmental_g2">
+                                        <field name="sweep_mats_and_mop"/>
+                                        <field name="wipe_down_wash_sinks_daily"/>
+                                        <field name="damp_mop_floor_wipe_walls"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="other" string="Other">
+                                <group name="other">
+                                    <group name="other_g1">
+                                        <field name="allergen_preventive_controls"/>
+                                        <field name="empty_trash_bins"/>
+                                        <field name="wipe_production_room"/>
+                                        <field name="wash_trash_bins"/>
+                                        <field name="in_house_monitoring"/>
+                                    </group>
+                                    <group name="other_g2">
+                                        <field name="good_manufacturing_practices"/>
+                                        <field name="sanitize_conveyor_belt"/>
+                                        <field name="sanitize_all_parts"/>
+                                        <field name="disassemble_clean_and_sanitize"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                      <field name="message_follower_ids" widget="mail_followers"/>
+                      <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="production_pre_operation_form_tree" model="ir.ui.view">
+            <field name="name">production.pre.operation.form.tree</field>
+            <field name="model">prod.pre.operation</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="id" string="Code"/>
+                    <field name="create_date" string="Create on"/>
+                    <field name="create_uid" string="Create by"/>
+                </tree>
+            </field>
+        </record>
+        <record id="production_pre_operation_form_action" model="ir.actions.act_window">
+            <field name="name">Production Pre-OP Checklist</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">prod.pre.operation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="fsma_main_menu" name="FSMA" web_icon="fsma_compliance,static/description/icon.png" sequence="30"/>
+        <menuitem id="SSOP_menu" name="SSOP" parent="fsma_compliance.fsma_main_menu" sequence="2"/>
+        <menuitem id="production_pre_operation_form_menu"
+                  name="Production Pre-OP Checklist"
+                  parent="SSOP_menu"
+                  action="production_pre_operation_form_action"
+                  sequence="0"/>
+
+    </data>
+</odoo>

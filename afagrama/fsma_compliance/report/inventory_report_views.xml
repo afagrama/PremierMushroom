@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                string="CSA inbound"
+                id="action_csa_inbound_pdf"
+                model="stock.picking"
+                report_type="qweb-pdf"
+                name="fsma_compliance.csa_inbound_report"
+                file="fsma_compliance.csa_inbound_report"
+                print_report_name="'CSA inbound - %s' % (object.id or '')"
+        />
+
+        <report
+                string="CSA outbound"
+                id="action_csa_outbound_pdf"
+                model="stock.picking"
+                report_type="qweb-pdf"
+                name="fsma_compliance.csa_outbound_report"
+                file="fsma_compliance.csa_outbound_report"
+                print_report_name="'CSA outbound - %s' % (object.id or '')"
+        />
+
+        <report
+                string="Hold Pallet Tags"
+                id="action_hold_pallet_tag_pdf"
+                model="stock.picking"
+                report_type="qweb-pdf"
+                menu="False"
+                name="fsma_compliance.hold_pallet_tag_report"
+                file="fsma_compliance.hold_pallet_tag_report"
+                print_report_name="'Hold Pallet Tags'"
+        />
+
+    </data>
+</odoo>

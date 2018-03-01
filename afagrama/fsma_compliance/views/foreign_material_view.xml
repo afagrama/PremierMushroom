@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--# ____________________________Umar-Aziz_______________________________-->
+        <record id="foreign_material_form_view" model="ir.ui.view">
+            <field name="name">foreign.material.form.view</field>
+            <field name="model">foreign.material</field>
+            <field name="arch" type="xml">
+                <form string="Foreign Material">
+                    <header>
+                    </header>
+                    <sheet string="Foreign Material">
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+
+                                <field name="log"/>
+                                <field name="product_id"/>
+                                <field name="lot_id"/>
+                            </group>
+                            <group>
+                                <field name="manufacturing_order_id"/>
+                                <field name="create_uid" readonly="1"/>
+                                <field name="create_date" readonly="1"/>
+                                <field name="date_and_time"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="blue_card_stain_2_0mm" attrs="{'invisible': [('log', '!=', 'action_pac')]}"/>
+                                <field name="yellow_card_nonferrous_1_5mm" attrs="{'invisible': [('log', '!=', 'action_pac')]}"/>
+                                <field name="red_card_ferrous_1_2mm" attrs="{'invisible': [('log', '!=', 'action_pac')]}"/>
+                                <field name="blue_card_stain_5_556mm" attrs="{'invisible': [('log', '!=', 'AMS')]}"/>
+                                <field name="yellow_card_ferrous_2_5mm" attrs="{'invisible': [('log', '!=', 'AMS')]}"/>
+                                <field name="red_card_nonferrous_5_5mm" attrs="{'invisible': [('log', '!=', 'AMS')]}"/>
+                                <field name="findings"/>
+
+                            </group>
+                            <group>
+                                <field name="corrective_action"/>
+                                <field name="metal_object_retained"/>
+                                <field name="rejects"/>
+                                <field name="poundage_destroyed"/>
+                                <field name="detection_method"/>
+                                <field name="evidence"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="foreign_material_form_tree" model="ir.ui.view">
+            <field name="name">foreign.material.form.tree</field>
+            <field name="model">foreign.material</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="id" string="Code"/>
+                    <field name="log"/>
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="manufacturing_order_id"/>
+                    <field name="date_and_time"/>
+                    <field name="create_date" string="Create on"/>
+                    <field name="create_uid" string="Create by"/>
+                </tree>
+            </field>
+        </record>
+        <record id="foreign_material_form_action" model="ir.actions.act_window">
+            <field name="name">Foreign Material</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">foreign.material</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="foreign_material_form_menu"
+                  name="Foreign Material"
+                  parent="fsma_compliance.fsma_main_menu"
+                  action="foreign_material_form_action"
+                  sequence="3"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                string="Foreign Material"
+                id="action_foreign_material_pdf"
+                model="foreign.material"
+                report_type="qweb-pdf"
+                name="fsma_compliance.foreign_material_report"
+                file="fsma_compliance.foreign_material_report"
+                print_report_name="'Foreign Material - %s' % (object.id or '')"
+        />
+        <report
+                string="Foreign Material View"
+                id="action_foreign_material_html"
+                model="foreign.material"
+                report_type="qweb-html"
+                name="fsma_compliance.foreign_material_report"
+                file="fsma_compliance.foreign_material_report"
+                print_report_name="'Foreign Material - %s' % (object.id or '')"
+        />
+
+        <report
+                string="Submission Form"
+                id="action_lab_submission_pdf"
+                model="lab.submission.form"
+                report_type="qweb-pdf"
+                name="fsma_compliance.lab_submission_report"
+                file="fsma_compliance.lab_submission_report"
+                print_report_name="'Lab Submission Form - %s' % (object.id or '')"
+        />
+        <report
+                string="Submission Form View"
+                id="action_lab_submission_html"
+                model="lab.submission.form"
+                menu="False"
+                report_type="qweb-html"
+                name="fsma_compliance.lab_submission_report"
+                file="fsma_compliance.lab_submission_report"
+                print_report_name="'Lab Submission Form - %s' % (object.id or '')"
+        />
+
+        <report
+                string="Production Daily Operation"
+                id="action_production_daily_operation_pdf"
+                model="production.daily.operation"
+                report_type="qweb-pdf"
+                name="fsma_compliance.production_operational_checklist_report"
+                file="fsma_compliance.production_operational_checklist_report"
+                print_report_name="'Production Daily Operation - %s' % (object.id or '')"
+        />
+        <report
+                string="Production Daily Operation View"
+                id="action_production_daily_operation_html"
+                model="production.daily.operation"
+                report_type="qweb-html"
+                name="fsma_compliance.production_operational_checklist_report"
+                file="fsma_compliance.production_operational_checklist_report"
+                print_report_name="'Production Daily Operation - %s' % (object.id or '')"
+        />
+
+        <report
+                string="Restroom Maintenance Log"
+                id="action_restroom_maintenance_log_pdf"
+                model="restroom.maintenance"
+                report_type="qweb-pdf"
+                name="fsma_compliance.restroom_maintenance_log_report"
+                file="fsma_compliance.restroom_maintenance_log_report"
+                print_report_name="'Restroom Maintenance Log - %s' % (object.id or '')"
+        />
+        <report
+                string="Restroom Maintenance Log View"
+                id="action_restroom_maintenance_log_html"
+                model="restroom.maintenance"
+                report_type="qweb-html"
+                name="fsma_compliance.restroom_maintenance_log_report"
+                file="fsma_compliance.restroom_maintenance_log_report"
+                print_report_name="'Restroom Maintenance Log - %s' % (object.id or '')"
+        />
+
+        <report
+                string="Operational Checklist"
+                id="action_ssop_op_check_pdf"
+                model="ssop.operation.check"
+                report_type="qweb-pdf"
+                name="fsma_compliance.ssop_op_check_report"
+                file="fsma_compliance.ssop_op_check_report"
+                print_report_name="'Operational Checklist - %s' % (object.id or '')"
+        />
+        <report
+                string="Operational Checklist View"
+                id="action_ssop_op_check_html"
+                model="ssop.operation.check"
+                report_type="qweb-html"
+                name="fsma_compliance.ssop_op_check_report"
+                file="fsma_compliance.ssop_op_check_report"
+                print_report_name="'Operational Checklist - %s' % (object.id or '')"
+        />
+
+        <report
+                string="Supplier Management"
+                id="action_supplier_management_pdf"
+                model="supplier.management"
+                report_type="qweb-pdf"
+                name="fsma_compliance.supplier_management_report"
+                file="fsma_compliance.supplier_management_report"
+                print_report_name="'Supplier Management - %s' % (object.id or '')"
+        />
+        <report
+                string="Supplier Management View"
+                id="action_supplier_management_html"
+                model="supplier.management"
+                report_type="qweb-html"
+                name="fsma_compliance.supplier_management_report"
+                file="fsma_compliance.supplier_management_report"
+                print_report_name="'Supplier Management - %s' % (object.id or '')"
+        />
+
+        <report
+                string="Pre-Operational Checklist"
+                id="action_production_pre_operation_pdf"
+                model="prod.pre.operation"
+                report_type="qweb-pdf"
+                name="fsma_compliance.production_pre_operation_report"
+                file="fsma_compliance.production_pre_operation_report"
+                print_report_name="'Pre-Operational Checklist - %s' % (object.id or '')"
+        />
+        <report
+                string="Pre-Operational Checklist View"
+                id="action_production_pre_operation_html"
+                model="prod.pre.operation"
+                report_type="qweb-html"
+                name="fsma_compliance.production_pre_operation_report"
+                file="fsma_compliance.production_pre_operation_report"
+                print_report_name="'Pre-Operational Checklist - %s' % (object.id or '')"
+        />
+
+        <report
+                string="Pallet Tags"
+                id="action_lab_pallet_tag_pdf"
+                model="lab.submission.form"
+                report_type="qweb-pdf"
+                menu="True"
+                name="fsma_compliance.lab_pallet_tag_report"
+                file="fsma_compliance.lab_pallet_tag_report"
+                print_report_name="'lab Pallet Tags'"
+        />
+
+    </data>
+</odoo>

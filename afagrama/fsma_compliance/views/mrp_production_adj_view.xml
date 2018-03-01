@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mrp_production_form_view_adj" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.adj</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//group[1]" position="after">
+                    <group name="mrp">
+                        <group name="mrp_g1">
+                            <field name="is_label_matches_product"/>
+                            <field name="is_scale_calibration"/>
+                            <field name="is_metal_detector_calibration"/>
+                            <field name="ATP_swabs"/>
+                            <field name="ATP_upload"/>
+                        </group>
+                        <group name="mrp_g2">
+                            <field name="finish_yield"/>
+                            <field name="finished_weight"/>
+                            <field name="shrinkage_overage"/>
+                            <field name="reject_explanation"/>
+                            <field name="actions"/>
+                            <field name="comments"/>
+                        </group>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

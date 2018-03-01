@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="ssop_op_check_report">
+            <t t-name="ssop_op_check">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="web.external_layout">
+                            <div class="page">
+                                <div class="row">
+                                    <div name="address" class="col-xs-5 col-xs-offset-7"/>
+                                </div>
+                                <h2 name="title"><strong><t t-esc="doc.name"/></strong></h2>
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', doc.id, 600, 100)" style="width:300px;height:50px" class="pull-right mb16"/>
+                                <h3 name="title"><strong>Code : </strong><t t-esc="doc.id"/></h3>
+                                <div class="clearfix"/>
+                                <div class="row mt32 mb32">
+                                    <div class="col-xs-6 pull-left">
+                                        <strong>Warehouse</strong>
+                                        <p><t t-esc="doc.warehouse"/></p>
+                                    </div>
+                                    <div class="col-xs-6 pull-right">
+                                        <strong>Created by</strong>
+                                        <p><t t-esc="doc.create_uid.name"/></p>
+                                        <strong>Created on</strong>
+                                        <p><t t-esc="doc.create_date"/></p>
+                                    </div>
+                                </div>
+
+                                <h3><strong>cCMP</strong></h3>
+
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:11px">
+                                        <p><b>Illness : </b><span t-field="doc.illness"/></p>
+                                        <p><b>Clean Garments : </b><span t-field="doc.clean_garments"/></p>
+                                        <p><b>Eating or Drinking : </b><span t-field="doc.eating_or_drinking"/></p>
+                                        <p><b>Wash Hands : </b><span t-field="doc.wash_hands"/></p>
+                                        <p><b>Food, Beverages : </b><span t-field="doc.food_beverages"/></p>
+
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:11px">
+
+                                        <p><b>Jewelry Policy : </b><span t-field="doc.jewelry_policy"/></p>
+                                        <p><b>Sanitizers Operation : </b><span t-field="doc.sanitizers_operation"/></p>
+                                        <p><b>Wash Facilities Supplied : </b><span t-field="doc.sash_facilities_supplied"/></p>
+                                        <p t-if="doc.warehouse != 'one'"><b>Change Rooms : </b><span t-field="doc.change_rooms"/></p>
+                                        <p><b>Pest Control : </b><span t-field="doc.pest_control"/></p>
+                                        <p t-if="doc.warehouse != 'two'"><b>Uniform : </b><span t-field="doc.uniform"/></p>
+                                    </div>
+                                </div>
+                                <h3><strong>Process</strong></h3>
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:11px">
+                                        <p><b>Receiving : </b><span t-field="doc.receiving"/></p>
+                                        <p><b>Allergen Control : </b><span t-field="doc.allergen_control"/></p>
+                                        <p><b>Shipping : </b><span t-field="doc.shipping"/></p>
+
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:11px">
+                                        <p t-if="doc.warehouse != 'one'"><b>Effective EMP : </b><span t-field="doc.effective_EMP"/></p>
+                                        <p t-if="doc.warehouse != 'one'"><b>FM Control : </b><span t-field="doc.FM_control"/></p>
+
+                                    </div>
+                                </div>
+                                <h3><strong>Facility</strong></h3>
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:11px">
+                                        <p><b>Mop and Broom : </b><span t-field="doc.Mop_and_broom"/></p>
+                                        <p t-if="doc.warehouse != 'one'"><b>Security : </b><span t-field="doc.security"/></p>
+                                        <p><b>Water Delivery : </b><span t-field="doc.water_delivery"/></p>
+                                        <p t-if="doc.warehouse != 'one'"><b>Floors and Drains : </b><span t-field="doc.floors_and_drains"/></p>
+                                        <p t-if="doc.warehouse != 'one'"><b>Walls, Doors and Ceiling : </b><span t-field="doc.Walls_doors_and_ceiling"/></p>
+                                        <p><b>Exterior Dock : </b><span t-field="doc.exterior_dock"/></p>
+                                        <p t-if="doc.warehouse != 'two'"><b>Inspect Hardware : </b><span t-field="doc.inspect_hardware"/></p>
+                                        <p t-if="doc.warehouse != 'two'"><b>Dock Area : </b><span t-field="doc.dock_area"/></p>
+
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:11px">
+                                        <p><b>Dock Doors : </b><span t-field="doc.dock_doors"/></p>
+                                        <p><b>Fire Safelty : </b><span t-field="doc.fire_safelty"/></p>
+                                        <p><b>Waste Mngt : </b><span t-field="doc.waste_mngt"/></p>
+                                        <p><b>Warehouse Floors : </b><span t-field="doc.warehouse_floors"/></p>
+                                        <p><b>Foreign Material : </b><span t-field="doc.foreign_material"/></p>
+                                        <p t-if="doc.warehouse != 'one'"><b>Sweep Front : </b><span t-field="doc.sweep_front"/></p>
+                                        <p t-if="doc.warehouse != 'one'"><b>HVAC Filter Replacement : </b><span t-field="doc.HVAC_Filter_replacement"/></p>
+                                    </div>
+                                </div>
+                                <h3><strong>Facility Lights</strong></h3>
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:11px">
+                                        <p><b>Food Processing Areas : </b><span t-field="doc.food_processing_areas"/></p>
+                                        <p><b>Inspection Stations : </b><span t-field="doc.inspection_stations"/></p>
+                                        <p><b>Storage Areas : </b><span t-field="doc.storage_areas"/></p>
+
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:11px">
+                                        <p><b>Light Fittings are Clean : </b><span t-field="doc.light_fittings_are_clean"/></p>
+                                        <p><b>Light Fixtures : </b><span t-field="doc.light_fixtures"/></p>
+                                        <p><b>Light Fittings Breakage : </b><span t-field="doc.light_fittings_breakage"/></p>
+                                    </div>
+                                </div>
+                                <h3><strong>Equipment</strong></h3>
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:11px">
+                                        <p><b>Forklift : </b><span t-field="doc.forklift"/></p>
+                                        <p t-if="doc.warehouse != 'one'"><b>Lockout : </b><span t-field="doc.lockout"/></p>
+                                        <p><b>Blade Sharpness : </b><span t-field="doc.blade_sharpness"/></p>
+                                        <p><b>Knife Blade : </b><span t-field="doc.knife_blade"/></p>
+
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:11px">
+                                        <p><b>Blade Disposal: </b><span t-field="doc.blade_disposal"/></p>
+                                        <p><b>Cutters and Knives Location : </b><span t-field="doc.cutters_and_knives_location"/></p>
+                                        <p t-if="doc.warehouse != 'two'"><b>Breakroom : </b><span t-field="doc.breakroom"/></p>
+                                        <p t-if="doc.warehouse != 'one'"><b>Key Control: </b><span t-field="doc.key_control"/></p>
+                                        <p t-if="doc.warehouse != 'one'"><b>Haz Comm : </b><span t-field="doc.haz_comm"/></p>
+                                    </div>
+                                </div>
+                                <h3><strong>Other</strong></h3>
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:11px">
+                                        <p><b>First Aid : </b><span t-field="doc.first_aid"/></p>
+                                        <p><b>Shelf Stable Packaged Goods : </b><span t-field="doc.shelf_stable_packaged_goods"/></p>
+                                        <p><b>Hazardous Chemicals : </b><span t-field="doc.hazardous_chemicals"/></p>
+
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:11px">
+                                        <p t-if="doc.warehouse != 'one'"><b>Scales : </b><span t-field="doc.scales"/></p>
+                                        <p t-if="doc.warehouse != 'two'"><b>Safety Meeting : </b><span t-field="doc.safety_meeting"/></p>
+                                        <p t-if="doc.warehouse != 'one'"><b>Toolbox Talks : </b><span t-field="doc.toolbox_talks"/></p>
+                                        <p t-if="doc.warehouse != 'one'"><b>UPS : </b><span t-field="doc.UPS"/></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+    </data>
+</odoo>
+
+

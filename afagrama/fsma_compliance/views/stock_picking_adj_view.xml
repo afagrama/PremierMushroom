@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_picking_form_adjust" model="ir.ui.view">
+            <field name="name">view.picking.form.adjust</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='action_cancel']" position="replace">
+                    <button name="action_cancel" attrs="{'invisible': ['|', ('state', 'not in', ('assigned', 'confirmed', 'partially_available', 'draft', 'pcqi', 'waiting')), ('is_locked', '=', False)]}" string="Cancel" groups="base.group_user" type="object"/>
+                </xpath>
+
+                <xpath expr="//button[@name='button_validate']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('state','in',('done', 'pcqi')) , ('show_validate', '=', False)]}</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='button_validate']" position="after">
+                    <button name="set_to_pcqi" string="PCQI" states="done" class="oe_highlight" type="object"/>
+                </xpath>
+
+                <xpath expr="//button[@name='action_toggle_is_locked']" position="after">
+                    <button name="lab_submission" string="Create Lab Sub" class="oe_highlight" type="object" attrs="{'invisible': ['|', ('picking_type_code','!=','incoming'), ('is_testable', '=', False)]}"/>
+                    <button name="print_hold_pallet" string="Print Hold Pallets" type="object" attrs="{'invisible': ['|', ('state','not in',('done', 'pcqi')), ('is_testable', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="replace">
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,partially_available,assigned,done,pcqi"/>
+                </xpath>
+
+                <xpath expr="//field[@name='location_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//page[@name='extra']//field[@name='picking_type_id']" position="after">
+                    <field name="lab_type_id" attrs="{'invisible': ['|', ('picking_type_code','!=','incoming'), ('is_testable', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//group[1]" position="after">
+                    <group name="first_g">
+                        <group name="first_g1">
+                            <field name="date_done" invisible="1"/>
+                            <field name="is_testable" invisible="1"/>
+                            <field name="pcqi_user_id" />
+                            <field name="pcqi_date" />
+                            <field name="lab_submission_id" attrs="{'invisible': [('picking_type_code','!=','incoming')]}"/>
+                        </group>
+                        <group name="first_g2" attrs="{'invisible': [('picking_type_code','!=','incoming')]}">
+                            <field name="is_allergen_pallet_tag" help="Allergen Notification (if shipment contains allergen – see above)"/>
+                            <field name="photo_upload"/>
+                        </group>
+                    </group>
+                    <group name="sec_g">
+                        <group name="sec_g1" string="&lt;h3&gt;&lt;b&gt;&lt;font color='#753C5A'&gt;Type of Transportation&lt;/font&gt;&lt;/b&gt;&lt;/h3&gt;" attrs="{'invisible': ['|',('picking_type_code','=','internal'),('picking_type_code','=','mrp_operation')]}">
+                            <field name="is_semi_trailer"/>
+                            <field name="is_common_carrier"/>
+                            <field name="is_ocean_container"/>
+                            <field name="is_personal_vehicle"/>
+                        </group>
+                        <group name="sec_g2" string="&lt;h3&gt;&lt;b&gt;&lt;font color='#753C5A'&gt;Vehicle was inspected&lt;br/&gt; and found to be clean and free of&lt;/font&gt;&lt;/b&gt;&lt;/h3&gt;" attrs="{'invisible': ['|',('picking_type_code','=','internal'),('picking_type_code','=','mrp_operation')]}">
+                            <field name="is_foreign_odors"/>
+                            <field name="is_moisture"/>
+                            <field name="is_pests"/>
+                            <field name="is_broken_glass"/>
+                            <field name="is_substances_or_residues"/>
+                            <field name="is_holes_in_sides"/>
+                        </group>
+                    </group>
+                    <group name="third_g">
+                        <group name="third_g1" string="&lt;h3&gt;&lt;b&gt;&lt;font color='#753C5A'&gt;Pallet and product were inspected visually&lt;br/&gt; &amp; with a black light and are free of&lt;/font&gt;&lt;/b&gt;&lt;/h3&gt;" attrs="{'invisible': [('picking_type_code','!=','incoming')]}">
+                            <field name="is_pallet_damage"/>
+                            <field name="is_signs_of_contamination"/>
+                        </group>
+                        <group name="third_g2" string="&lt;h3&gt;&lt;b&gt;&lt;font color='#753C5A'&gt;Damaged Product&lt;/font&gt;&lt;/b&gt;&lt;/h3&gt;" attrs="{'invisible': [('picking_type_code','!=','incoming')]}">
+                            <field name="is_number_of_broken_packaging"/>
+                            <field name="is_corrective_action" />
+                        </group>
+                    </group>
+                    <group name="forth_g">
+                        <group name="forth_g1" string="&lt;h3&gt;&lt;b&gt;&lt;font color='#753C5A'&gt;Vehicle was deemed unsuitable.&lt;br/&gt; Corrective actions include&lt;/font&gt;&lt;/b&gt;&lt;/h3&gt;" attrs="{'invisible': [('picking_type_code','!=','outgoing')]}">
+                            <field name="is_photo" string="Photo"/>
+                            <field name="is_client_released_shipment" />
+                            <field name="is_client_to_send_new_truck" />
+                        </group>
+                        <group name="forth_g2" string="&lt;h3&gt;&lt;b&gt;&lt;font color='#753C5A'&gt;Allergen Notification &lt;br/&gt;(if shipment contains allergen – see above)&lt;/font&gt;&lt;/b&gt;&lt;/h3&gt;" attrs="{'invisible': [('picking_type_code','!=','outgoing')]}">
+                            <field name="is_allergen_pallet_tag_out" />
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='move_lines']/tree" position="after">
+                    <form string="Stock Moves" create="0" edit="0">
+                        <header>
+                            <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,assigned,done" modifiers="{'readonly': true}"/>
+                        </header>
+                        <sheet>
+                            <div class="oe_button_box" name="button_box">
+                                <button name="action_get_account_moves" icon="fa-usd" class="oe_stat_button" string="Accounting Entries" type="object"/>
+                            </div>
+                            <group>
+                                <group name="main_grp" colspan="2">
+                                    <group name="main_grp_col1">
+                                        <field name="reference" modifiers="{'readonly': true}"/>
+                                        <field name="location_id" can_create="true" can_write="true" modifiers="{'required': true}"/>
+                                        <field name="location_dest_id" can_create="true" can_write="true" modifiers="{'required': true}"/>
+                                    </group>
+                                    <group name="main_grp_col2">
+                                        <field name="product_id" on_change="1" can_create="true" can_write="true" modifiers="{'readonly': [('state', 'in', ('done')]], 'required': true}"/>
+                                        <label for="product_uom_qty"/>
+                                        <div class="o_row">
+                                            <field name="product_uom_qty" modifiers="{'readonly': [('state', 'in', ('done')]], 'required': true}"/>
+                                            <field name="product_uom" options="{'no_open': True, 'no_create': True}" on_change="1" can_create="true" can_write="true" invisible="1" modifiers="{'invisible': true, 'required': true}"/>
+                                        </div>
+                                        <field name="name" invisible="1" on_change="1" modifiers="{'invisible': true, 'required': true}"/>
+                                        <field name="date_expected" invisible="1" modifiers="{'invisible': true, 'readonly': [('state', 'in', ('done')]], 'required': true}"/>
+                                        <field name="date" attrs="{'invisible': [('state', '!=', 'done')]}" on_change="1" modifiers="{'invisible': [('state', '!=', 'done')], 'readonly': [('state', 'in', ('done')]], 'required': true}"/>
+                                    </group>
+                                </group>
+                                <group name="origin_grp" string="Origin">
+                                    <field name="origin" modifiers="{}"/>
+                                    <field name="group_id" can_create="true" can_write="true" modifiers="{}"/>
+                                    <field name="procure_method" invisible="1" modifiers="{'invisible': true, 'required': true}"/>
+                                    <field name="purchase_line_id" can_create="true" can_write="true" modifiers="{'readonly': true}"/>
+                                </group>
+                                <group name="linked_group" string="Linked Moves" colspan="2">
+                                    <field name="move_orig_ids" string="Origin Moves" readonly="1" can_create="true" can_write="true" modifiers="{'readonly': true}">
+                                    </field>
+                                    <field name="move_dest_ids" string="Destination Moves" readonly="1" can_create="true" can_write="true" modifiers="{'readonly': true}">
+                                    </field>
+                                </group>
+                            </group>
+                        </sheet>
+                    </form>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="vpicktree_adj" model="ir.ui.view">
+            <field name="name">vpicktree.adj</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">state not in ('cancel', 'done', 'pcqi') and scheduled_date &lt; current_date</attribute>
+                    <attribute name="decoration-success">state=='pcqi'</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='location_dest_id']" position="before">
+                    <field name="lab_type_id"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="action_window_vpicktree_adj" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="vpicktree_adj"/>
+            <field name="act_window_id" ref="stock.stock_picking_action_picking_type"/>
+        </record>
+
+        <record id="view_picking_internal_search_inh" model="ir.ui.view">
+            <field name="name">view.picking.internal.search.inh</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="state"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

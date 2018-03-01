@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="restroom_maintenance_log_report">
+            <t t-name="restroom_maintenance_log">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="web.external_layout">
+                            <div class="page" style="page-break-inside: avoid;">
+                                <div class="row">
+                                    <div name="address" class="col-xs-5 col-xs-offset-7"/>
+                                </div>
+                                <h2><strong>Restroom Maintenance Log</strong></h2>
+                                <div class="clearfix"/>
+                                <div class="row mt32 mb32">
+                                    <div class="col-xs-6 pull-left">
+                                        <strong>Bathroom #</strong>
+                                        <p><t t-esc="doc.bathroom_num"/></p>
+                                        <strong>Maintenance Log</strong>
+                                        <p><t t-esc="doc.id"/></p>
+                                    </div>
+                                    <div class="col-xs-6 pull-right">
+                                        <strong>Created by</strong>
+                                        <p><t t-esc="doc.create_uid.name"/></p>
+                                        <strong>Created on</strong>
+                                        <p><t t-esc="doc.create_date"/></p>
+                                    </div>
+                                </div>
+
+                                <h3><strong>Information</strong></h3>
+
+                                <div class="row">
+                                    <div class="col-xs-6 pull-left" style="font-size:13px">
+                                        <p t-if="doc.toilets_Cleaned"><b>Toilets Cleaned : </b>Yes</p>
+                                        <p t-if="not doc.toilets_Cleaned"><b>Toilets Cleaned : </b>No</p>
+
+                                        <p t-if="doc.mirrors_cleaned"><b>Mirrors Cleaned : </b>Yes</p>
+                                        <p t-if="not doc.mirrors_cleaned"><b>Mirrors Cleaned : </b>No</p>
+
+                                        <p t-if="doc.sinks_cleaned"><b>Sinks Cleaned : </b>Yes</p>
+                                        <p t-if="not doc.sinks_cleaned"><b>Sinks Cleaned : </b>No</p>
+
+                                        <p t-if="doc.floors_mopped"><b>Floors Mopped : </b>Yes</p>
+                                        <p t-if="not doc.floors_mopped"><b>Floors Mopped : </b>No</p>
+
+                                        <p t-if="doc.floors_swept"><b>Floors Swept : </b>Yes</p>
+                                        <p t-if="not doc.floors_swept"><b>Floors Swept : </b>No</p>
+                                    </div>
+                                    <div class="col-xs-6 pull-right" style="font-size:13px">
+                                        <p><b>Toilet paper : </b><span t-field="doc.toilet_paper"/></p>
+                                        <p><b>Paper towels : </b><span t-field="doc.paper_towels"/></p>
+                                        <p><b>Seat Covers : </b><span t-field="doc.seat_covers"/></p>
+                                        <p><b>Soap Dispenser : </b><span t-field="doc.soap_dispenser"/></p>
+                                        <p><b>Trash : </b><span t-field="doc.trash"/></p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+    </data>
+</odoo>
+

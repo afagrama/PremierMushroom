@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_form_view_adj" model="ir.ui.view">
+            <field name="name">fsma.partner.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='purchase']//field[@name='supplier']" position="after">
+                    <field name="supplier_id" domain="[('vendor_id','=', id)]" attrs="{'invisible': [('supplier', '!=', True)]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

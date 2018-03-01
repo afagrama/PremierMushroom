@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="lab_pallet_tag_report">
+            <t t-name="lab_pallet_tag">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="web.external_layout">
+                            <div class="page">
+                                <div>
+                                    <t t-set="pallet" t-value="0"/>
+
+                                    <t t-foreach="doc.stock_id.move_line_ids" t-as="line">
+                                        <span style="font-size:20px">
+                                            <t t-set="pallet" t-value="pallet + 1" />
+                                            <p><strong>Source Document : </strong><t t-esc="doc.stock_id.origin"/></p>
+                                            <p><strong>Product : </strong> <t t-esc="line.product_id.display_name"/></p>
+                                            <p><strong>Lot # : </strong><span t-field="line.lot_id.name"/></p>
+                                            <p><strong>Quantity # : </strong><span t-esc="line.qty_done"/></p>
+                                            <p><strong>PLT # : </strong>
+                                                <t t-if="line.result_package_id">
+                                                    <span t-esc="line.result_package_id.name[-7:]"/>
+                                                </t>
+                                            </p>
+                                            <p><strong>Pallet # : </strong><span t-esc="pallet"/> <strong>   Of   </strong> <span t-esc="len(doc.stock_id.move_line_ids)"/></p>
+
+                                            <div style="padding-top:60px;"/>
+
+                                            <div class="text-center"> <strong>status</strong></div>
+                                            <div style="padding-top:20px;"/>
+                                        </span>
+
+                                        <span style="font-size:60px">
+
+                                            <div class="text-center">
+                                                <span t-if="doc.stock_id.location_dest_id.usage == 'clean'">
+                                                    <b>Release For Cleaning</b>
+                                                </span>
+                                                <span t-if="doc.stock_id.location_dest_id.usage == 'production'">
+                                                    <b>Release For Production</b>
+                                                </span>
+                                                <span t-if="doc.stock_id.location_dest_id.usage == 'reject'">
+                                                    <b>Test Fail</b>
+                                                </span>
+                                                <span t-if="doc.stock_id.location_dest_id.usage == 'test'">
+                                                    <b>Waiting Test Results</b>
+                                                </span>
+                                            </div>
+                                        </span>
+                                        <span style="font-size:20px">
+                                            <div style="padding-top:70px;">
+                                                <div class="text-center"><strong>DETAINED FOR TESTING<br/>
+                                                    ITEM IS NOT OFFICIALLY IN<br/>
+                                                    INVENTORY</strong></div><br/>
+                                                <div style="padding-top:90px;">
+                                                    <p t-if="doc.stock_id.location_dest_id.usage == 'reject'"><strong>Cause : </strong><span t-field="doc.destroy_cause"/></p>
+                                                    <strong>Directive:</strong>
+                                                    <div style="padding-left:50px;">
+                                                        <ul style="list-style-type:circle">
+                                                            <li>HOLD!</li>
+                                                            <li>Complete Warehouse receipt.</li>
+                                                            <li>Initiate Process Progression Form.</li>
+                                                            <li>Product is to be undisturbed until lab analysis is reviewed by RCO/PCQI</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                        <t t-if="pallet != len(doc.stock_id.move_line_ids)">
+                                            <t t-if="doc.stock_id.location_dest_id.usage == 'reject'">
+                                                <div style="padding-top:140px;"/>
+                                            </t>
+                                            <t t-if="doc.stock_id.location_dest_id.usage != 'reject'">
+                                                <div style="padding-top:180px;"/>
+                                            </t>
+                                        </t>
+                                    </t>
+                                    <t t-if="not doc.stock_id.move_lines"><div class="text-center"><strong>You do not have any products reserved for this picking.</strong></div></t>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+
+        </template>
+
+    </data>
+</odoo>
+
+
+
+
