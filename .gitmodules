@@ -1,0 +1,4 @@
+[submodule "afagrama/PremierMushroom"]
+	path = afagrama/PremierMushroom
+	url = git@github.com:afagrama/PremierMushroom.git
+	branch = master
